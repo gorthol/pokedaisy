@@ -13,6 +13,12 @@ on:
         description: Commit / branch to test (Nightly passes dev's head); empty = the event's own ref
         type: string
         default: ''
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: Branch to test
+        default: dev
+        type: string
 
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -63,6 +69,13 @@ jobs:
 
       - name: Debug APK (Kotlin + the native mGBA / rcheevos build)
         run: ./gradlew :app:assembleDebug --stacktrace
+
+      - name: Upload debug APK
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: app-apk
+          path: app/build/outputs/apk/**/*.apk
+          retention-days: 7
 
       - name: Test reports
         if: failure()
