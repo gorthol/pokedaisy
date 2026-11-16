@@ -15,7 +15,7 @@ on:
         default: ''
   workflow_dispatch:
     inputs:
-      branch:
+      ref:
         description: Branch to test
         default: dev
         type: string
