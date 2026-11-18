@@ -66,6 +66,12 @@ jobs:
 
       # ROM-backed tests skip here (no ROMs in CI - they run on the release runner);
       # fixtures, guards, Paparazzi renders and everything else run.
+      - name: Restore fixed debug keystore
+        run: |
+          mkdir -p ~/.android
+          echo "${{ secrets.DEBUG_KEYSTORE_BASE64 }}" | base64 --decode > ~/.android/debug.keystore
+    
+      
       - name: Debug APK (Kotlin + the native mGBA / rcheevos build)
         run: ./gradlew :app:assembleDev --stacktrace
 
