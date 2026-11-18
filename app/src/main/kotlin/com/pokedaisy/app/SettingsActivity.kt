@@ -841,7 +841,7 @@ class SettingsActivity : ComponentActivity() {
             ) {
                 prefs.hideBattleMenu = !prefs.hideBattleMenu
                 revision++
-            }.takeIf { usesSecondScreen },
+            },
             // One screen: FIGHT, POKéMON and RUN in the room beside a battle (BattleButtons).
             SettingRow(
                 tk("BATTLE BUTTONS"), onOff(prefs.battleButtons), subtitle = "FIGHT, POKéMON and RUN beside a battle",
