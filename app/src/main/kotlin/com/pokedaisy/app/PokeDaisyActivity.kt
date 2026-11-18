@@ -1652,7 +1652,7 @@ class PokeDaisyActivity : Activity() {
     private fun syncBattleMenuHide() {
         if (!::engine.isInitialized) return
         val on = Prefs(this).hideBattleMenu && battleMenuHideSupported() && !debugMirror && !companionClosed &&
-            !companionOverGame.value && presentation?.isShowing == true
+            !companionOverGame.value
         engine.battleTypeFlagsAddr = com.pokedaisy.app.companion.data.activeNativeConfig?.battleTypeFlags ?: 0L
         engine.battleMenuHide = if (on) 1 else 0
     }
