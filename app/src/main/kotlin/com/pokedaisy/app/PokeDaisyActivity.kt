@@ -2031,7 +2031,7 @@ class PokeDaisyActivity : Activity() {
             Prefs(this@PokeDaisyActivity).fieldHud = on
             runOnUiThread { syncGameScreen() }
         }
-        override val hideBattleMenu get() = if (secondScreen() != null && battleMenuHideSupported()) Prefs(this@PokeDaisyActivity).hideBattleMenu else null
+        override val hideBattleMenu get() = if (battleMenuHideSupported()) Prefs(this@PokeDaisyActivity).hideBattleMenu else null
         override fun setHideBattleMenu(on: Boolean) {
             Prefs(this@PokeDaisyActivity).hideBattleMenu = on
             syncBattleMenuHide()
