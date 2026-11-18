@@ -1652,7 +1652,7 @@ class PokeDaisyActivity : Activity() {
     private fun syncBattleMenuHide() {
         if (!::engine.isInitialized) return
         val on = Prefs(this).hideBattleMenu && battleMenuHideSupported() && !debugMirror && !companionClosed &&
-            !companionOverGame.value
+            hudSingleScreen.value && !hudUpright.value && !companionOverGame.value
         engine.battleTypeFlagsAddr = com.pokedaisy.app.companion.data.activeNativeConfig?.battleTypeFlags ?: 0L
         engine.battleMenuHide = if (on) 1 else 0
     }
@@ -2031,7 +2031,7 @@ class PokeDaisyActivity : Activity() {
             Prefs(this@PokeDaisyActivity).fieldHud = on
             runOnUiThread { syncGameScreen() }
         }
-        override val hideBattleMenu get() = if (secondScreen() != null && battleMenuHideSupported()) Prefs(this@PokeDaisyActivity).hideBattleMenu else null
+        override val hideBattleMenu get() = if (battleMenuHideSupported()) Prefs(this@PokeDaisyActivity).hideBattleMenu else null
         override fun setHideBattleMenu(on: Boolean) {
             Prefs(this@PokeDaisyActivity).hideBattleMenu = on
             syncBattleMenuHide()
