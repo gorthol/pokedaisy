@@ -68,20 +68,16 @@ jobs:
       # fixtures, guards, Paparazzi renders and everything else run.
       - name: Restore fixed debug keystore
         run: |
-          mkdir -p "$HOME/.android"
-          echo "${{ secrets.DEBUG_KEYSTORE_BASE64 }}" | base64 --decode > "$HOME/.android/debug.keystore"
-          if [ -n "$ANDROID_USER_HOME" ] && [ "$ANDROID_USER_HOME" != "$HOME/.android" ]; then
-            mkdir -p "$ANDROID_USER_HOME"
-            cp "$HOME/.android/debug.keystore" "$ANDROID_USER_HOME/debug.keystore"
-          fi
-          echo "Rutas comprobadas:"
-          echo "HOME=$HOME"
-          echo "ANDROID_USER_HOME=$ANDROID_USER_HOME"
-          ls -lh "$HOME/.android/debug.keystore"
-      
-      - name: Debug APK (Kotlin + the native mGBA / rcheevos build)
-        run: ./gradlew :app:assembleDev --stacktrace
+          echo "${{ secrets.DEBUG_KEYSTORE_BASE64 }}" | tr -d '\n\r ' | base64 --decode > "$RUNNER_TEMP/debug.keystore"
+          ls -lh "$RUNNER_TEMP/debug.keystore"
 
+      - name: Debug APK (Kotlin + the native mGBA / rcheevos build)
+        run: |
+          ./gradlew :app:assembleDev --stacktrace \
+            -Pandroid.injected.signing.store.file="$RUNNER_TEMP/debug.keystore" \
+            -Pandroid.injected.signing.store.password="android" \
+            -Pandroid.injected.signing.key.alias="androiddebugkey" \
+            -Pandroid.injected.signing.key.password="android"
       - name: Upload debug APK
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
