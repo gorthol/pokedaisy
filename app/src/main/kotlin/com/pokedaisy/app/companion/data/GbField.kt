@@ -357,7 +357,7 @@ sealed class GbField {
     )
 
     /** Spanish Crystal (Cristal): English Crystal's RAM and scripts, its Flypoints table 0x1E later. */
-    object CrystalEe : CrystalEngine(
+    object CrystalEs : CrystalEngine(
         cfg = GEN2_CRYSTAL_ES,
         QUEUE = wramx(1, 0xD45C), PC_SCRIPT = 0x41A9, FLY_SCRIPT = 0x4AA3, SCRIPT_RUNNING = wramx(1, 0xD438),
         MAP_EVENT_STATUS = wramx(1, 0xD433), VISITED_SPAWNS = wramx(1, 0xDCA5), JOHTO_BADGES = wramx(1, 0xD857),
