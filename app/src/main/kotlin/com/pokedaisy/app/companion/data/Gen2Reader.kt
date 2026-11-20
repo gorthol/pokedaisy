@@ -135,6 +135,16 @@ val GEN2_CRYSTAL_DE = GEN2_CRYSTAL.copy(
     switchMenuLeft = 0x0A,
 )
 
+/** Spanish Crystal (Cristal): English Crystal's RAM; its own names ([CRYSTAL_ES_TEXT]), dex pages and battle menu columns. */
+val GEN2_CRYSTAL_ES = GEN2_CRYSTAL.copy(
+    pokedex = POKEDEX_CRYSTAL_ES,
+    language = 'S',
+    gameCode = "BYTS",
+    battleMenuLeft = 0x05,
+    switchMenuLeft = 0x0A,
+)
+
+
 /**
  * Crystal Legacy v1.3.1 (cRz-Shadows/Pokemon_Crystal_Legacy, a pret/pokecrystal fork: `make pokecrystal.gbc` with rgbds 0.5.2 at
  * tag V1.3.1 is the patched cart byte for byte, from either retail revision's patch, so its pokecrystal.sym gives every
@@ -696,7 +706,7 @@ fun readGen2Telemetry(r: MemoryReader, cfg: Gen2Config): Telemetry {
         // The GUIDE's flags, badges and clock (Polished Crystal's: GuidePolishedCrystal.kt; Crystal's: GuideCrystal.kt).
         progress = when {
             cfg.polished -> runCatching { readPolishedProgress(r) }.getOrNull()
-            cfg === GEN2_CRYSTAL || cfg === GEN2_CRYSTAL_DE -> runCatching { readCrystalProgress(r) }.getOrNull()
+            cfg === GEN2_CRYSTAL || cfg === GEN2_CRYSTAL_DE || cfg === GEN2_CRYSTAL_ES -> runCatching { readCrystalProgress(r) }.getOrNull()
             cfg === GEN2_CRYSTAL_LEGACY -> runCatching { readCrystalProgress(r, CRYSTAL_LEGACY_GUIDE_RAM) }.getOrNull()
             else -> null
         },
