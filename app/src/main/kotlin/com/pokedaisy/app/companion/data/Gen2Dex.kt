@@ -189,6 +189,26 @@ val POKEDEX_CRYSTAL_DE = POKEDEX_CRYSTAL.copy(
     gen2 = GEN2_DEX_CRYSTAL_DE, categorySuffix = "", metric = true, decimalPoint = '.', unitSpace = false,
 )
 
+/** Spanish Crystal (Cristal): Crystal's tables moved, its pages metric with no "POKéMON" after the category. */
+val GEN2_DEX_CRYSTAL_ES = Gen2DexTables(
+    baseData = 0x14 to 0x540E,
+    dexEntryPointers = 0x11 to 0x436C,
+    dexEntryBanks = 0x11 to 0x4346,
+    picPointers = 0x48 to 0x4000,
+    unownPicPointers = 0x49 to 0x4000,
+    picsBanks = 0x14 to 0x51BE,
+    palettes = 0x02 to 0x68CE,
+    itemDescriptions = 0x72 to 0x4979,
+    tmHmMoves = 0x04 to 0x5671,
+    moveDescriptions = 0x0B to 0x4B55,
+    firstTm = 0xBF,
+    tmItems = gen2TmItemsCrystal,
+    metricBody = true,
+)
+val POKEDEX_CRYSTAL_ES = POKEDEX_CRYSTAL.copy(
+    gen2 = GEN2_DEX_CRYSTAL_ES, categorySuffix = "", metric = true, decimalPoint = '.', unitSpace = false,
+)
+
 /** Gold's and Silver's: the same tables over each version's own pages (two objects, so a dex cache never crosses them). */
 val POKEDEX_GOLD = POKEDEX_CRYSTAL.copy(gen2 = GEN2_DEX_GOLD_SILVER)
 val POKEDEX_SILVER = POKEDEX_CRYSTAL.copy(gen2 = GEN2_DEX_GOLD_SILVER)
