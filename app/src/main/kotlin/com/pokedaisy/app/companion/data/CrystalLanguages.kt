@@ -8,3 +8,11 @@ internal val CRYSTAL_DE_TEXT by lazy {
         englishMoves = { moveDataCrystal },
     )
 }
+
+internal val CRYSTAL_ES_TEXT by lazy {
+    GameText(
+        species = { speciesNamesCrystalEs }, moves = { moveNamesCrystalEs }, items = { itemNamesCrystalEs }, natures = emptyList(),
+        mapSecs = { landmarkNamesCrystalEs }, smallFontWidths = { IntArray(0) }, englishMapSecs = { mapSecDataCrystal },
+        englishMoves = { moveDataCrystal },
+    )
+}
