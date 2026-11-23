@@ -191,19 +191,18 @@ val POKEDEX_CRYSTAL_DE = POKEDEX_CRYSTAL.copy(
 
 /** Spanish Crystal (Cristal): Crystal's tables moved, its pages metric with no "POKéMON" after the category. */
 val GEN2_DEX_CRYSTAL_ES = Gen2DexTables(
-    baseData = 0x14 to 0x540E,
-    dexEntryPointers = 0x11 to 0x436C,
-    dexEntryBanks = 0x11 to 0x4346,
+    baseData = 0x14 to 0x5424,
+    dexEntryPointers = 0x11 to 0x4378,
+    dexEntryBanks = 0x11 to 0x4351,
     picPointers = 0x48 to 0x4000,
     unownPicPointers = 0x49 to 0x4000,
-    picsBanks = 0x14 to 0x51BE,
+    picsBanks = 0x14 to 0x51D4,
     palettes = 0x02 to 0x68CE,
-    itemDescriptions = 0x72 to 0x4979,
-    tmHmMoves = 0x04 to 0x5671,
-    moveDescriptions = 0x0B to 0x4B55,
+    itemDescriptions = 0x72 to 0x4987,
+    tmHmMoves = 0x04 to 0x567A,
+    moveDescriptions = 0x0B to 0x4B52,
     firstTm = 0xBF,
     tmItems = gen2TmItemsCrystal,
-    metricBody = true,
 )
 val POKEDEX_CRYSTAL_ES = POKEDEX_CRYSTAL.copy(
     gen2 = GEN2_DEX_CRYSTAL_ES, categorySuffix = "", metric = true, decimalPoint = '.', unitSpace = false,
