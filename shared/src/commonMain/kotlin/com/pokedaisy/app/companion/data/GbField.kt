@@ -94,6 +94,7 @@ sealed class GbField {
             game == GameKind.YELLOW_LEGACY -> GB_FIELD_YELLOW_LEGACY
             game == GameKind.CRYSTAL && activeGen2 === GEN2_CRYSTAL -> Crystal
             game == GameKind.CRYSTAL && activeGen2 === GEN2_CRYSTAL_DE -> CrystalDe
+            game == GameKind.CRYSTAL && activeGen2 === GEN2_CRYSTAL_ES -> CrystalEs
             game == GameKind.CRYSTAL_LEGACY -> CrystalLegacy
             game == GameKind.GOLD && activeGen2 === GEN2_GOLD -> Gold
             game == GameKind.SILVER && activeGen2 === GEN2_SILVER -> Silver
@@ -436,6 +437,22 @@ sealed class GbField {
         boxCalls = GEN2_BOX_CALLS_CRYSTAL_DE,
         itemCalls = GEN2_ITEM_CALLS_CRYSTAL_DE,
         STATUS_FLAGS2 = wramx(1, 0xD84D), LINK_MODE = 0xC2DCL,
+    )
+
+    /** Spanish Crystal (Cristal): English Crystal's RAM and scripts, its Flypoints table 0x1E later. */
+    object CrystalEs : CrystalEngine(
+        cfg = GEN2_CRYSTAL_ES,
+        QUEUE = wramx(1, 0xD45C), PC_SCRIPT = 0x41A9, FLY_SCRIPT = 0x4AA3, SCRIPT_RUNNING = wramx(1, 0xD438),
+        MAP_EVENT_STATUS = wramx(1, 0xD433), VISITED_SPAWNS = wramx(1, 0xDCA5), JOHTO_BADGES = wramx(1, 0xD857),
+        ENVIRONMENT = wramx(1, 0xD19A), PARTY_MON1_MOVES = wramx(1, 0xDCE1), COOLDOWN = wramx(1, 0xD452),
+        FLYPOINTS = 0x24 * 0x4000L + (0x5C7C - 0x4000),
+        signatures = listOf(
+            0x25 * 0x4000L + (0x7C31 - 0x4000) to "fa5cd4a7c8215ed42a666ffa5dd4cd09", // RunMemScript
+            0x2F * 0x4000L + (0x41A9 - 0x4000) to "470f1c00499185",                  // opentext, special, closetext, end
+            0x03 * 0x4000L + (0x4AA3 - 0x4000) to "7c0e0000300f3500",                // the Fly script's first commands
+            0x25 * 0x4000L + (0x68C7 - 0x4000) to "2152d47ea7c835c837c9",           // CheckWildEncounterCooldown
+            0x24 * 0x4000L + (0x5C7C - 0x4000) to "010e030f",                         // Flypoints: NEUBORKIA, ROSALIA CITY
+        ),
     )
 
     /**
