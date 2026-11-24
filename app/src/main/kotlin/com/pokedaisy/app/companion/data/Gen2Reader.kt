@@ -140,8 +140,6 @@ val GEN2_CRYSTAL_ES = GEN2_CRYSTAL.copy(
     pokedex = POKEDEX_CRYSTAL_ES,
     language = 'S',
     gameCode = "BYTS",
-    battleMenuLeft = 0x05,
-    switchMenuLeft = 0x0A,
 )
 
 
