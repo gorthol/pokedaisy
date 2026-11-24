@@ -191,7 +191,7 @@ val POKEDEX_CRYSTAL_DE = POKEDEX_CRYSTAL.copy(
 
 /** Spanish Crystal (Cristal): Crystal's tables moved, its pages metric with no "POKéMON" after the category. */
 val GEN2_DEX_CRYSTAL_ES = Gen2DexTables(
-    baseData = 0x14 to 0x540E,
+    baseData = 0x14 to 0x542D,
     dexEntryPointers = 0x11 to 0x436C,
     dexEntryBanks = 0x11 to 0x4346,
     picPointers = 0x48 to 0x4000,
